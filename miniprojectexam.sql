@@ -149,7 +149,7 @@ with check option;
 --     2. INOUT inoutNewScore DECIMAL(4,2)
 --     3. Xử lý: Nếu inoutNewScore > 10 → gán lại = 10. Thực hiện cập nhật điểm thông qua View ViewITEnrollmentDB.
 delimiter //
-create procedure updatescoreitdb (
+create procedure UpdateScoreITDB (
     in varstudentid varchar(6),
     inout inoutnewscore decimal(4,2)
 )
@@ -157,7 +157,7 @@ begin
     if inoutnewscore > 10 then
         set inoutnewscore = 10;
     end if;
-    update viewitenrollmentdb
+    update ViewITEnrollmentDB
     set score = inoutnewscore
     where studentid = varstudentid;
 end //
@@ -167,7 +167,7 @@ delimiter ;
 --     2. Gọi thủ tục để cập nhật điểm cho một sinh viên bất kỳ thuộc khoa IT.
 --     3. Sau khi gọi: Hiển thị lại giá trị điểm mới và kiểm tra dữ liệu trong View ViewITEnrollmentDB.
 set @my_score = 15.0;
-call updatescoreitdb('S00006', @my_score);
+call UpdateScoreITDB('S00001', @my_score);
 select @my_score; 
 
 
