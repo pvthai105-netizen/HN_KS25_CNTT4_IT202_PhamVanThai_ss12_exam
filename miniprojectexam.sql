@@ -160,19 +160,16 @@ begin
     update viewitenrollmentdb
     set score = inoutnewscore
     where studentid = varstudentid;
-    
-    if row_count() = 0 then
-        signal sqlstate '45000' 
-        set message_text = 'cập nhật thất bại: sinh viên không thuộc khoa it hoặc sai mã môn!';
-    end if;
 end //
 delimiter ;
 --   - c) GỌI THỦ TỤC: Viết lệnh CALL để kiểm tra thủ tục:
 --     1. Khai báo biến session để nhận giá trị INOUT.
 --     2. Gọi thủ tục để cập nhật điểm cho một sinh viên bất kỳ thuộc khoa IT.
 --     3. Sau khi gọi: Hiển thị lại giá trị điểm mới và kiểm tra dữ liệu trong View ViewITEnrollmentDB.
-SET @my_score = 15.0;
-CALL UpdateScoreITDB('S00001', @my_score);
+set @my_score = 15.0;
+call updatescoreitdb('S00006', @my_score);
+select @my_score; 
+
 SELECT @my_score; 
 
 
