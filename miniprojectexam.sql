@@ -170,8 +170,6 @@ set @my_score = 15.0;
 call updatescoreitdb('S00006', @my_score);
 select @my_score; 
 
-SELECT @my_score; 
-
 
 
 
